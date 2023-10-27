@@ -49,4 +49,58 @@ app.post('/categories/create', (req, res) => {
     })
 })
 
+app.put('/products/productname/:id', (req, res) => {
+    let sql = `UPDATE products SET productName='${req.body.productName}' WHERE id = ${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(`Product ${req.params.id} name updated to ${req.body.productName}`)
+    })
+})
+app.put('/categories/categoryname/:id', (req, res) => {
+    let sql = `UPDATE categories SET categoryName='${req.body.categoryName}' WHERE id = ${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(`Category ${req.params.id} name updated to ${req.body.categoryName}`)
+    })
+})
+
+app.get('/get/products', (req, res) => {
+    let sql = `SELECT * FROM products`;
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
+
+app.get('/get/categories', (req, res) => {
+    let sql = 'SELECT * FROM categories';
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result);
+    })
+});
+
+app.get('/createtable/productscategories', (req, res) => {
+    let sql = `CREATE TABLE productsCategories(
+id INT AUTO_INCREMENT,
+product_id INT,
+category_id INT,
+PRIMARY KEY(id),
+FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE,
+FOREIGN KEY(category_id) REFERENCES categories(id)
+);`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send('ProductsCategories table created');
+    })
+})
+
+app.post('/productcategories/link', (req, res) => {
+    let sql = `INSERT INTO productsCategories(product_id,category_id) VALUES(1,1),(2,2);`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(201).send('ProductsCategories table linked');
+    })
+})
+
 app.listen(PORT, () => { console.log(`server on ${PORT}`) })
