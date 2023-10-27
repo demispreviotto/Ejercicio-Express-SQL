@@ -102,5 +102,53 @@ app.post('/productcategories/link', (req, res) => {
         res.status(201).send('ProductsCategories table linked');
     })
 })
+app.get('/productcategories/show', (req, res) => {
+    let sql = `SELECT productName, categoryName FROM productsCategories 
+INNER JOIN products ON products.id = productsCategories.product_id
+INNER JOIN categories ON categories.id = productsCategories.category_id;`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result);
+    })
+})
+
+app.get('/products/selectbyid/:id', (req, res) => {
+    let sql = `SELECT * FROM products WHERE id = ${req.params.id}`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
+
+app.get('/products/showdesc/', (req, res) => {
+    let sql = 'SELECT * FROM products ORDER BY id DESC;'
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
+
+app.get('/categories/selectbyid/:id', (req, res) => {
+    let sql = `SELECT * FROM categories WHERE id = ${req.params.id}`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
+app.get('/products/selectbyname/:name', (req, res) => {
+    let sql = `SELECT * FROM products WHERE productName = "${req.params.name}"`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
+
+app.delete('/products/deletebyid/:id', (req, res) => {
+    let sql = `DELETE FROM products WHERE id = ${req.params.id};`
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+})
 
 app.listen(PORT, () => { console.log(`server on ${PORT}`) })
