@@ -4,8 +4,10 @@ const db = require("./config/database")
 
 const PORT = 8080;
 
-app.use(express.json())
-app.use("/", require("./routes/products.js"))
+app.use(express.json());
+
+app.use("/", require("./routes/products.js"));
+app.use("/", require("./routes/categories.js"))
 
 app.get('/createdb', (req, res) => {
     let sql = 'CREATE DATABASE expressDB';
