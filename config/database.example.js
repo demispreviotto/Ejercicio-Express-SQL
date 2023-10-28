@@ -4,7 +4,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: "root",
     password: "enter password",
-    database: "expressDB"
+    database: "enter DB name"
 })
 db.connect();
 
