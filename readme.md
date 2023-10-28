@@ -20,10 +20,10 @@ Demis Previotto - <a href="https://github.com/demispreviotto">Link to GitHub</a>
 </ul>
 
 <li><strong>Work with MVC pattern:</strong></li>
-
+<ul>
 <li>Implement the Model-View-Controller (MVC) design pattern to structure your application. Create a "config" folder with a "database.js" file to store database connection details and a "database.example.js" file for reference (without credentials). Remember not to upload sensitive information to your GitHub repository.</li>
 <li>The purpose of implementing the MVC pattern is to separate concerns within your application, making it more organized, maintainable, and scalable. The Model represents the data and database interactions, the View handles the presentation and user interface, and the Controller manages the application's logic.</li>
-
+</ul>
 </ol>
 
 ## Implemented tools & lenguages
