@@ -35,56 +35,6 @@ app.get('/createtable/categories', (req, res) => {
     })
 })
 
-// app.post('/products/create', (req, res) => {
-//     let sql = `INSERT INTO products(productName, productPrice) values('${req.body.productName}', '${req.body.productPrice}')`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         console.log(result);
-//         res.status(201).send(`Product ${req.body.productName} added`)
-//     })
-// })
-
-// app.post('/categories/create', (req, res) => {
-//     let sql = `INSERT INTO categories(categoryName, categoryDescription) values('${req.body.categoryName}', '${req.body.categoryDescription}')`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         console.log(result);
-//         res.status(201).send(`categorie ${req.body.categoryName} added`)
-//     })
-// })
-
-// app.put('/products/productname/:id', (req, res) => {
-//     let sql = `UPDATE products SET productName='${req.body.productName}' WHERE id = ${req.params.id}`;
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(`Product ${req.params.id} name updated to ${req.body.productName}`)
-//     })
-// })
-
-// app.put('/categories/categoryname/:id', (req, res) => {
-//     let sql = `UPDATE categories SET categoryName='${req.body.categoryName}' WHERE id = ${req.params.id}`;
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(`Category ${req.params.id} name updated to ${req.body.categoryName}`)
-//     })
-// })
-
-// app.get('/get/products', (req, res) => {
-//     let sql = `SELECT * FROM products`;
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
-
-// app.get('/get/categories', (req, res) => {
-//     let sql = 'SELECT * FROM categories';
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result);
-//     })
-// });
-
 app.get('/createtable/productscategories', (req, res) => {
     let sql = `CREATE TABLE productsCategories(
 id INT AUTO_INCREMENT,
@@ -116,45 +66,5 @@ INNER JOIN categories ON categories.id = productsCategories.category_id;`
         res.status(200).send(result);
     })
 })
-
-// app.get('/products/selectbyid/:id', (req, res) => {
-//     let sql = `SELECT * FROM products WHERE id = ${req.params.id}`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
-
-// app.get('/products/showdesc/', (req, res) => {
-//     let sql = 'SELECT * FROM products ORDER BY id DESC;'
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
-
-// app.get('/categories/selectbyid/:id', (req, res) => {
-//     let sql = `SELECT * FROM categories WHERE id = ${req.params.id}`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
-
-// app.get('/products/selectbyname/:name', (req, res) => {
-//     let sql = `SELECT * FROM products WHERE productName = "${req.params.name}"`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
-
-// app.delete('/products/deletebyid/:id', (req, res) => {
-//     let sql = `DELETE FROM products WHERE id = ${req.params.id};`
-//     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         res.status(200).send(result)
-//     })
-// })
 
 app.listen(PORT, () => { console.log(`server on ${PORT}`) })
